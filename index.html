@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.css">
+    
+</head>
+<body>
+    
+    <div class="navbar">
+        <img src="./img.png" alt="" class="navbar__img">
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item">
+                    Home
+            </li>
+            <li class="navbar-menu-item navbar-menu-item--actived">
+                    jobs
+            </li>
+            <li class="navbar-menu-item">
+                    contact
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="title">
+            GENERAL INQUIRES
+        </div>
+    <form name="frmMain" onsubmit="return isValid()">
+        <div class="text-input">
+            <div >
+
+                <span class="infor">
+                    NAME
+                </span>
+                <div class="required" id="fillName-required">
+                    Required
+                </div>
+            </div>
+            <div class="input-text">
+
+                <input type="text" name="fillName" id="" onblur="checkName()">
+            </div>
+        </div>
+
+        <div class="text-input">
+            <div >
+
+                <span class="infor">
+                    EMAIL
+                </span>
+                <div class="required" id="fillEmail-required">
+                    Required
+                </div>
+            </div>
+            <div class="input-text">
+
+                <input type="text" name="fillEmail" id="" onblur="checkEmail()">
+            </div>
+        </div>
+        <div class="text-input">
+            <div >
+
+                <span class="infor">
+                    NATURE OF ENQUIRY
+                </span>
+               
+            </div>
+            <div class="input-select">
+                <select name="" id="">
+                    <option value="">general</option>
+                    <option value="">general</option>
+                    <option value="">general</option>
+                </select>
+            </div>
+        </div>
+        <div class="text-input">
+            <div >
+
+                <span class="infor">
+                    MESSAGE
+                </span>
+            </div>
+            <div class="input-text message-text" contenteditable="">
+                <!-- <input type="text" name="" id="" class='message'> -->
+            </div>
+        </div>
+        <div class="text-input">
+            <div >
+
+                <div class="infor" id="math"  >
+                
+                </div>
+                <p class="required" id="fillMath-required">
+                    required
+                </p>
+            </div>
+            <div class="input-text">
+
+                <input type="text" name="fillMath" id="" onblur="checkMath()">
+            </div>
+        </div>
+        <button class="submit" >SUBMIT</button>
+    </form>
+    </div>
+
+    <div class="footer">
+        <p class="footer-text">
+            200 Online Users-24 Visited Users
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.js"></script>
+    <script>
+        const checkName= _=> {
+            var val=frmMain.fillName.value;
+            
+            if (val==='') {
+                document.getElementById('fillName-required').innerText='Please fill out your name';
+                return false;
+            }
+            else
+            {
+                document.getElementById('fillName-required').innerText='Required';
+                return true;
+            }
+        }
+
+        const checkEmail= _=> {
+            var val=frmMain.fillEmail.value;
+         
+            var _email=/@email.com/i;
+            var result=val.match(_email);
+          
+            var t=val.length-10;
+        
+            if(result===null || result.index==0 || t!=result.index)
+            {
+                document.getElementById('fillEmail-required').innerText='Please fill out a valid email format';
+                return false;
+            }
+            else
+            {
+                document.getElementById('fillEmail-required').innerText='Required';
+                return true;
+            }
+        }
+
+        const a=Math.floor(Math.random() * 10);
+        const b=Math.floor(Math.random() * 10);
+        document.getElementById('math').innerHTML=a +'+' + b+'='+'?';
+
+        const checkMath=_=>{
+            var val=frmMain.fillMath.value;
+           
+            if(a+b==val)
+            {
+                document.getElementById('fillMath-required').innerHTML='Required';
+                return true;
+            }
+            else{
+                document.getElementById('fillMath-required').innerHTML='Please fill out a correct answer';
+                return true;
+            }
+           
+        }
+
+        const isValid=_=>
+        {
+            var _name=checkName();
+            var _email=checkEmail();
+            var _math=checkMath();
+            if(_name==false ||_email==false || _math==false  )
+            {
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Invalid data.',
+                  icon: 'error',
+                 confirmButtonText: 'Close'
+                  })
+              return false;
+            }
+            else
+            {
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Thank you for your information!',
+                  icon: 'success',
+                 confirmButtonText: 'Close'
+                  })
+                setTimeout(returnTrue,2000);
+               
+                  
+                
+            }
+           
+        }
+        const returnTrue=_=>{
+            return True;
+        }
+
+    </script>
+</body>
+</html>
